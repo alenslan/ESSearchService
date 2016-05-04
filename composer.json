@@ -1,0 +1,19 @@
+{
+    "name": "Ltbl/SsoService",
+    "type": "library",
+    "description": "lua sso client",
+    "keywords": ["sso client"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle" : "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ltbl\\SsoService\\": "src/"
+        }
+    }
+}
