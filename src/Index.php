@@ -9,7 +9,9 @@ use Ltbl\ESSearchService\ES;
 
 class Index extends ES
 {
-    protected $indexConf;
+    public $indexConf;
+    public $index;
+    public $type;
 
     public function __construct($indexName = "fulltext")
     {
@@ -23,7 +25,7 @@ class Index extends ES
      * @param object $item 输入对象
      * @return array
      */
-    private function getItemBody($item)
+    public function getItemBody($item)
     {
         $bodyConf = $this->indexConf['feilds'];
         $res = [];

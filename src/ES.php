@@ -26,6 +26,11 @@ class ES
      */
     protected $type;
 
+    /**
+     * 配置
+     */
+    public $config;
+
     public function __construct()
     {
         $hosts = Config::get('essearch.hosts', []);

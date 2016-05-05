@@ -1,19 +1,16 @@
 {
-    "name": "Ltbl/SsoService",
+    "name": "Ltbl/ESSearchService",
     "type": "library",
-    "description": "lua sso client",
-    "keywords": ["sso client"],
+    "description": "elasticsearch laravel service",
+    "keywords": ["elasticsearch laravel"],
     "license": "MIT",
     "require": {
         "php": ">=5.5.0",
-        "guzzlehttp/guzzle" : "~6.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.0"
+        "elasticsearch/elasticsearch": "~2.0",
     },
     "autoload": {
         "psr-4": {
-            "Ltbl\\SsoService\\": "src/"
+            "Ltbl\\ESSearchService\\": "src/"
         }
     }
 }
