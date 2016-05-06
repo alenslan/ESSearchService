@@ -28,14 +28,20 @@ ps坑：jdk需要1.7版本以上
     ES_HOME:/usr/share/elasticsearch
 
 复制 ik 自己的 config 到 CONFIG_HOME
+
 复制 mvn后的 /target/releases/elasticsearch-analysis-ik-1.9.1.zip 到ES_HOME/plugins/ik
+
 解压elasticsearch-analysis-ik-1.9.1.zip
 
 restart elasticsearch
 
 #### **4.热更新**
+
 plugins/ik/config/ik/IKAnalyzer.cfg.xml
-目前该插件支持热更新 IK 分词，通过上文在 IK 配置文件中提到的如下配置
+
+目前该插件支持热更新 IK 分词，通过上文在 IK
+
+配置文件中提到的如下配置
 
     <!--用户可以在这里配置远程扩展字典 -->
     <entry key="remote_ext_dict">location</entry>
@@ -265,10 +271,14 @@ mapping : 生成新索引的配置
     
     php artisan app:es-index test [new|clear|bulk]
 
-test是配置名
-new   是新建索引[需要索引不存在]
+test是配置名 
+
+new   是新建索引[需要索引不存在] 
+
 clear 是清除索引
-bulk  是批量导入索引数据
+
+bulk  是批量导入索引数据 
+
 
 
 
