@@ -152,14 +152,14 @@ mapping : 生成新索引的配置
 
 说明
 
-        /**
-         * 分词器调用
-         *
-         * @param string $text 输入文本 
+    /**
+     * 分词器调用
+     *
+     * @param string $text 输入文本 
      * @param string $analyzer 选择分析器 
-         * @return array
-         */
-        public function ikAnalyze($text, $analyzer = 'ik_smart')
+     * @return array
+     */
+    public function ikAnalyze($text, $analyzer = 'ik_smart')
     
 **2 Search**    
 
@@ -169,10 +169,10 @@ mapping : 生成新索引的配置
     
 说明
 
-        /**
-         * 搜索搜索调用
-         *
-         * @param string $word 输入查询词
+    /**
+     * 搜索搜索调用
+     *
+     * @param string $word 输入查询词
      * @return array
      */
     public function search($word)
@@ -196,54 +196,54 @@ mapping : 生成新索引的配置
     $index->deleted($item); // 删除单条索引
 说明
 
-        /**
-         * @param string $indexName 索引配置
+    /**
+     * @param string $indexName 索引配置
      * @return void
      */
     public function __construct($indexName = "")
     
-        /**
-         * 添加单条索引
-         *
-         * @param object $item 输入对象
+    /**
+     * 添加单条索引
+     *
+     * @param object $item 输入对象
      * @return void
      */
     public function created($item)
     
-        /**
-         * 更新单条索引
-         *
-         * @param object $item 输入对象
+    /**
+     * 更新单条索引
+     *
+     * @param object $item 输入对象
      * @return void
      */
     public function updated($item)
     
-        /**
-         * 删除单条索引
-         *
-         * @param object $item 输入对象
+    /**
+     * 删除单条索引
+     *
+     * @param object $item 输入对象
      * @return void
      */
     public function deleted($item)
     
-        /**
-         * 建立索引
-         *
-         * @return void
-         */
-        public function mapping()
+    /**
+     * 建立索引
+     *
+     * @return void
+     */
+    public function mapping()
     
-        /**
-         * 清空索引
-         *
-         * @return void
-         */
-        public function clear()
+    /**
+     * 清空索引
+     *
+     * @return void
+     */
+    public function clear()
     
-        /**
-         * 批量导入数据
-         * 
-         * @param array $params 输入列表
+    /**
+     * 批量导入数据
+     * 
+     * @param array $params 输入列表
      * @return void
      */
     public function bulk($params)
