@@ -113,7 +113,7 @@ class Index extends ES
 
     /**
      * 批量导入数据
-     * 
+     *
      * @param array $params 输入列表
      * @return void
      */

@@ -16,7 +16,7 @@ class IndexToElasticsearchCommand extends Command
      * The name and signature of the console command.
      * $indexType 索引配置名
      * $action 操作名 [new bulk clear]
-     * 
+     *
      * @var string
      */
     protected $signature = 'app:es-index {name} {action}';
@@ -70,7 +70,7 @@ class IndexToElasticsearchCommand extends Command
 
     /**
      * 读取配置信息
-     * 
+     *
      * @return void
      */
     private function getConfig()
@@ -80,7 +80,7 @@ class IndexToElasticsearchCommand extends Command
     
     /**
      * 获得索引函数
-     * 
+     *
      * @return void
      */
     private function getIndex()
@@ -91,7 +91,7 @@ class IndexToElasticsearchCommand extends Command
     /**
      * 新建索引操作
      *
-     * @return void 
+     * @return void
      */
     private function mapping()
     {
@@ -134,7 +134,7 @@ class IndexToElasticsearchCommand extends Command
         $model = new $this->index->config['model'];
         $limitNum = array_get($this->index->config, 'limitNum', 1000);
 
-        $model->chunk($limitNum, function($rows) {
+        $model->chunk($limitNum, function ($rows) {
             $params = ['body' => []];
             foreach ($rows as $row) {
                 $idName = $this->index->indexConf['id'];
@@ -151,6 +151,6 @@ class IndexToElasticsearchCommand extends Command
                 ];
             }
             $this->index->bulk($params);
-        }); 
+        });
     }
 }
