@@ -29,8 +29,8 @@ class Index extends ES
     {
         $bodyConf = $this->indexConf['feilds'];
         $res = [];
-        foreach ($bodyConf as $key => $value) {
-            $res[$key] = $item->$value;
+        foreach ($bodyConf as $key) {
+            $res[$key] = $item->$key;
         }
 
         return $res;
@@ -92,7 +92,6 @@ class Index extends ES
     {
         $this->client->indices()->create([
             'index' => $this->index,
-            // 'type' => $this->type,
             'body' => [
                 'mappings' => $this->config['mappings']
             ]
@@ -119,7 +118,7 @@ class Index extends ES
      */
     public function bulk($params)
     {
-        if (!empty($params['body'])) {
+        if (! empty($params['body'])) {
             $this->client->bulk($params);
         }
     }

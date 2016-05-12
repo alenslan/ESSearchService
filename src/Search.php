@@ -12,9 +12,9 @@ use Ltbl\ESSearchService\ES;
 class Search extends ES
 {
     /**
-     * @param string $indexName 索引名
+     * @param string $indexName 索引配置名
      */
-    public function __construct($indexName = "fulltext")
+    public function __construct($indexName = "")
     {
         parent::__construct();
         $this->getConfig($indexName);
@@ -24,26 +24,49 @@ class Search extends ES
      * 搜索搜索调用
      *
      * @param string $word 输入查询词
+     * @param int $pn 页数
+     * @param int $size 每页条数
      * @return array
      */
-    public function search($word)
+    public function search($word, $pn=0, $size=10)
     {
         if (! $word) {
             return [];
         }
 
+        $from = $pn * $size;
         $items = $this->client->search([
             'index' => $this->index,
             'type' => $this->type,
             'body' => [
-                'query' =>[
+                'query' => [
                     'match' => [
                         '_all' => $word
                     ]
                 ]
-            ]
+            ],
+            'from' => $from,
+            'size' => $size,
         ]);
 
         return $items['hits']['hits'];
+    }
+
+    /**
+     * 结果输出整理
+     * 
+     * @param array $items 输入列表
+     * @return array
+     */
+    public function searchOutputFomat($items)
+    {
+        $res = [];
+        foreach ($items as $item) {
+            $data = $item['_source'];
+            $data['_id'] = $item['_id'];
+            $res[] = $data;
+        }
+
+        return $res;
     }
 }

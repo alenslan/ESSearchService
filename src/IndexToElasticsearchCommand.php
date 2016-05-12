@@ -138,18 +138,20 @@ class IndexToElasticsearchCommand extends Command
             $params = ['body' => []];
             foreach ($rows as $row) {
                 $idName = $this->index->indexConf['id'];
-                $params['body'][] = [
+                $data = [
                     'index' => [
                         '_index' => $this->index->index,
                         '_type' => $this->index->type,
-                        '_id' => $row->$idName,
                     ]
                 ];
+                if ($idName) {
+                    $data['index']['_id'] = $row->$idName;
+                }
+                $params['body'][] = $data;
             
-                $params['body'][] = [
-                    'title' => $this->index->getItemBody($row),
-                ];
+                $params['body'][] = $this->index->getItemBody($row);
             }
+
             $this->index->bulk($params);
         });
     }
