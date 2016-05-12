@@ -110,7 +110,7 @@ config/essearch.php
         'index' => [
             'indices' => 'test', // 索引库
             'type' => 'test', // 索引类型
-            'id' => 'id', // ID 来源
+            'id' => 'id', // ID 来源,可以为空
             'feilds' => [ // 索引字段
                 'title'
             ]
@@ -171,7 +171,7 @@ mapping : 生成新索引的配置
 
 使用 
 
-    (new Search())->search('全民');
+    (new Search())->search('全民', 1, 20);
     
 说明
 
@@ -179,9 +179,11 @@ mapping : 生成新索引的配置
      * 搜索搜索调用
      *
      * @param string $word 输入查询词
+     * @param int $pn 页数
+     * @param int $size 每页条数
      * @return array
      */
-    public function search($word)
+    public function search($word, $pn=0, $size=10)
     
 **3 Index**
 
