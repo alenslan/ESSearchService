@@ -21,13 +21,13 @@ class Analyze extends ES
      * @param string $analyzer 选择分析器
      * @return array
      */
-    public function ikAnalyze($text, $analyzer = 'ik_smart')
+    public function ikAnalyze($text, $index='index', $analyzer = 'ik_smart')
     {
         if (! $text) {
             return [];
         }
         $items = $this->client->indices()->analyze([
-            'index' => 'index',
+            'index' => $index,
             'analyzer' => $analyzer,
             'text' => $text
         ]);

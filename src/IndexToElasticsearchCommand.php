@@ -1,6 +1,6 @@
 <?php
 /**
- * elasticSearch 批量操作索引命令
+ * 游戏应用参数elasticSearch 批量操作索引命令
  *
  */
 namespace App\Console\Commands;
@@ -138,17 +138,18 @@ class IndexToElasticsearchCommand extends Command
             $params = ['body' => []];
             foreach ($rows as $row) {
                 $idName = $this->index->indexConf['id'];
+                
                 $data = [
                     'index' => [
                         '_index' => $this->index->index,
                         '_type' => $this->index->type,
                     ]
                 ];
-                if ($idName) {
-                    $data['index']['_id'] = $row->$idName;
-                }
+                // if ($idName) {
+                //     $data['index']['_id'] = $row->$idName;
+                // }
+                $data['index']['_id'] = sprintf('%s%s', $row->id, $row->apps_type);
                 $params['body'][] = $data;
-            
                 $params['body'][] = $this->index->getItemBody($row);
             }
 
