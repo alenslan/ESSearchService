@@ -13,7 +13,7 @@ class Index extends ES
     public $index;
     public $type;
 
-    public function __construct($indexName = "fulltext")
+    public function __construct($indexName = "")
     {
         parent::__construct();
         $this->getConfig($indexName);
@@ -27,13 +27,36 @@ class Index extends ES
      */
     public function getItemBody($item)
     {
-        $bodyConf = $this->indexConf['feilds'];
+        $bodyConf = $this->indexConf['fields'];
         $res = [];
         foreach ($bodyConf as $key) {
             $res[$key] = $item->$key;
         }
 
         return $res;
+    }
+
+    /**
+     * 获得单条索引
+     * 
+     * @param object $item 输入对象
+     * @return object
+     */
+    public function get($item)
+    {
+        $id = $this->indexConf['id'];
+        try {
+            $res = $this->client->get([
+                'index' => $this->index,
+                'type' => $this->type,
+                'id' => $item->$id,
+            ]);
+            return $res;
+        } catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e) {
+            return ;
+        } catch (\Exception $e) {
+           return ;
+        }
     }
 
     /**
@@ -44,10 +67,11 @@ class Index extends ES
      */
     public function created($item)
     {
+        $id = $this->indexConf['id'];
         $this->client->index([
             'index' => $this->index,
             'type' => $this->type,
-            'id' => $item->$this->indexConf['id'],
+            'id' => $item->$id,
             'body' => $this->getItemBody($item)
         ]);
     }
@@ -60,10 +84,11 @@ class Index extends ES
      */
     public function updated($item)
     {
+        $id = $this->indexConf['id'];
         $this->client->index([
             'index' => $this->index,
             'type' => $this->type,
-            'id' => $item->$this->indexConf['id'],
+            'id' => $item->$id,
             'body' => $this->getItemBody($item)
         ]);
     }
@@ -76,11 +101,14 @@ class Index extends ES
      */
     public function deleted($item)
     {
-        $this->client->delete([
-            'index' => $this->index,
-            'type' => $this->type,
-            'id' => $item->$this->indexConf['id'],
-        ]);
+        $id = $this->indexConf['id'];
+        if ($this->get($item)) {
+            $this->client->delete([
+                'index' => $this->index,
+                'type' => $this->type,
+                'id' => $item->$id,
+            ]);
+        }
     }
 
     /**

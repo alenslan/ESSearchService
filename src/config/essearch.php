@@ -21,7 +21,7 @@ return [
             'indices' => 'test', // 索引库
             'type' => 'test', // 索引类型
             'id' => 'id', // ID 来源
-            'feilds' => [ // 索引字段
+            'fields' => [ // 索引字段
                 'title'
             ]
         ],
