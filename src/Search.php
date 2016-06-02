@@ -49,7 +49,7 @@ class Search extends ES
             'size' => $size,
         ]);
 
-        return $items['hits']['hits'];
+        return $items;
     }
 
     /**
@@ -84,7 +84,7 @@ class Search extends ES
             'size' => $size,
         ]);
 
-        return $items['hits']['hits'];
+        return $items;
     }
 
     /**
@@ -95,6 +95,7 @@ class Search extends ES
      */
     public function searchOutputFomat($items)
     {
+        $items = $items['hits']['hits'];
         $res = [];
         foreach ($items as $item) {
             $data = $item['_source'];

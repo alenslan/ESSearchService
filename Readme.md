@@ -103,7 +103,7 @@ config/essearch.php
 
     'test' => [
         // model读取
-        'model' => '\App\Games',
+        'model' => ['\App\Games'],
         // 一次取的数量
         'limitNum' => 10000,
         // 索引名称和类型
@@ -171,7 +171,7 @@ mapping : 生成新索引的配置
 
 使用 
 
-    (new Search())->search('全民', 1, 20);
+    (new Search('app'))->search('全民', ['title', 'name'], 1, 20);
     
 说明
 
@@ -179,11 +179,12 @@ mapping : 生成新索引的配置
      * 搜索搜索调用
      *
      * @param string $word 输入查询词
+     * @param array $fields 搜索字段
      * @param int $pn 页数
      * @param int $size 每页条数
      * @return array
      */
-    public function search($word, $pn=0, $size=10)
+    public function search($word, $fields, $pn=0, $size=10)
     
 **3 Index**
 
@@ -280,7 +281,5 @@ new   是新建索引[需要索引不存在]
 clear 是清除索引
 
 bulk  是批量导入索引数据 
-
-
 
 
