@@ -75,7 +75,7 @@ class Search extends ES
                 'query' => [
                     'multi_match' => [
                         'query' => $word,
-                        'type' => 'best_fields', 
+                        'type' => 'most_fields', 
                         'fields' => $fields,
                     ]
                 ]
