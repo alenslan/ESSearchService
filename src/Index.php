@@ -30,7 +30,7 @@ class Index extends ES
         $bodyConf = $this->indexConf['fields'];
         $res = [];
         foreach ($bodyConf as $key) {
-            $res[$key] = $item->$key;
+            $res[$key] = isset($item->$key) ? $item->$key : null;
         }
 
         return $res;
